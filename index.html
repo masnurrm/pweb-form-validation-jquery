@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+
+        <title>Form Validation dengan JQuery</title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+        <script type="text/javascript" src="jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="jquery/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    </head>
+
+    <body>
+        <center>
+            
+
+            <div class="form-section">
+                <div>
+                    <h1>Form Input Data Mahasiswa</h1>
+                </div>
+
+                <div class="section-card">
+                    <form action="proses.php" method="post" id="form-validation">
+                        <div>
+                            <label for="NRP" class="labelfrm">NRP : </label>
+                            <input
+                                type="text"
+                                name="NRP"
+                                id="NRP"
+                                maxlength="10"
+                                class="required"
+                                size="15"
+                            />
+                        </div>
+
+                        <div>
+                            <label for="nama" class="labelfrm">Nama : </label>
+                            <input
+                                type="text"
+                                name="nama"
+                                id="nama"
+                                size="30"
+                                class="required"
+                            />
+                        </div>
+
+                        <div>
+                            <label for="alamat" class="labelfrm">Alamat : </label>
+                            <textarea
+                                name="alamat"
+                                id="alamat"
+                                cols="40"
+                                rows="4"
+                                class="required"
+                            ></textarea>
+                        </div>
+
+                        <div>
+                            <label for="tgl" class="labelfrm">Tanggal Lahir : </label>
+                            <input
+                                type="date"
+                                name="tgl"
+                                id="tgl"
+                                maxlength="10"
+                                size="15"
+                                class="required"
+                                placeholder="10/02/2003"
+                            />
+                        </div>
+
+                        <div>
+                            <label for="umur" class="labelfrm">Umur : </label>
+                            <input
+                                type="number"
+                                name="umur"
+                                id="umur"
+                                maxlength="3"
+                                size="7"
+                                class="required"
+                            />
+                        </div>
+
+                        <div>
+                            <label for="email" class="labelfrm">Email : </label>
+                            <input
+                                type="text"
+                                name="email"
+                                id="email"
+                                size="50"
+                                class="required"
+                                placeholder="example@gmail.com"
+                            />
+                        </div>
+
+                        <div>
+                            <label for="pass1" class="labelfrm">Password : </label>
+                            <input
+                                type="password"
+                                name="pass1"
+                                id="pass1"
+                                size="15"
+                                class="required"
+                            />
+                        </div>
+
+                        <div>
+                            <label for="pass2" class="labelfrm">Konfirmasi Password : </label>
+                            <input
+                                type="password"
+                                name="pass2"
+                                id="pass2"
+                                size="15"
+                                class="required"
+                            />
+                        </div>
+
+                        <input
+                            type="submit"
+                            name="Submit"
+                            value="Submit"
+                            class="btn btn-default"
+                        />
+                    </form>
+                </div>
+            </div>
+        </center>
+    </body>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#form-validation").validate({
+                rules: {
+                NRP: {
+                    digits: true,
+                    minlength: 10,
+                    maxlength: 10,
+                },
+                umur: {
+                    digits: true,
+                    range: [0, 100],
+                },
+                email: {
+                    email: true,
+                },
+                pass2: {
+                    equalTo: "#pass1",
+                },
+                },
+                messages: {
+                NRP: {
+                    minlength: "NRP should consists of 10 digits",
+                    maxlength: "NRP should consists of 10 digits",
+                },
+                email: {
+                    email: "Email's format is not valid valid",
+                },
+                pass2: {
+                    equalTo: "Password is not match",
+                },
+                },
+            });
+        });
+    </script>
+</html>
